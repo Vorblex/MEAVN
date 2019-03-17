@@ -1,4 +1,5 @@
 import PostsService from '@/services/PostsService'
+import router from '@/router'
 export default {
   namespaced: true,
   state: {
@@ -6,7 +7,6 @@ export default {
   },
   getters: {
     items (state) {
-      console.log(state.items)
       return state.items
     }
   },
@@ -18,7 +18,7 @@ export default {
       this.dispatch('posts/getPosts')
     },
     updatePost (state, payload) {
-
+      this.dispatch('posts/getPosts')
     }
   },
   actions: {
@@ -29,10 +29,12 @@ export default {
     async removePost (store, payload) {
       await PostsService.removePost(payload)
       store.commit('removePost', payload)
-      // store.commit('getPosts')
     },
-    updatePost ({commit}, payload) {
-
+    async updatePost ({commit}, payload) {
+      let response = await PostsService.updatePost(payload)
+      commit('updatePost')
+      router.push({name: 'Posts'})
+      return response
     }
   }
 }

@@ -54,11 +54,14 @@ router.put('/posts/:id', (req, res) => {
       if(req.body.action) {
         post.action = req.body.action
       }
-      post.save(err => {
+      post.save((err, data) => {
         if(err) {
           res.sendStatus(500)
         } else {
-          res.sendStatus(200)
+          res.send({
+            success: true,
+            message: `Post with ID_${data._id} saved updated!` 
+          })
         }
       })
     }

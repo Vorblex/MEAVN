@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import PostsService from '@/services/PostsService'
 export default {
   data () {
@@ -36,21 +37,25 @@ export default {
     }
   },
   methods: {
+    ...mapActions('posts', {
+      updatePost: 'updatePost'
+    }),
     async getPost () {
       let response = await PostsService.fetchPost(this.id)
       this.post = response.data
     },
-
     async editPost () {
       if (this.post.title !== '' && this.post.description !== '') {
-        let res = await PostsService.updatePost({
+        let data = {
           id: this.$route.params.id,
           title: this.post.title,
           description: this.post.description,
           action: this.post.action
-        })
-        this.answer = res.data.message
-        this.$router.push({ name: 'Posts' })
+        }
+
+        let response = await this.updatePost(data)
+        this.answer = response.data.message
+        // this.$router.push({ name: 'Posts' })
       } else {
         alert('Empty fields!')
       }
