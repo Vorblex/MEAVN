@@ -11,7 +11,7 @@ app.use(morgan('combined'));
 app.use(express.json());
 app.use(cors());
 
-app.use(require('./routes/posts'));
+app.use('/posts', require('./routes/posts'));
 
 mongoose.connect(config.dbURL, config.dbOptions);
 
