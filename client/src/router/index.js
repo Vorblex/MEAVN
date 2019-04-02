@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Posts from '@/components/pages/PostsPage'
 import NewPost from '@/components/pages/NewPostPage'
 import EditPage from '@/components/pages/EditPage'
+import SignUp from '@/components/pages/SignUp'
+import SignIn from '@/components/pages/SignIn'
 
 import store from '@/store'
 
@@ -18,6 +20,16 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/registration',
+      name: 'Registration',
+      component: SignUp
+    },
+    {
+      path: '/signin',
+      name: 'SignIn',
+      component: SignIn
     },
     {
       path: '/posts',

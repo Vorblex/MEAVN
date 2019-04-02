@@ -28,7 +28,7 @@ exports.user_signup = (req, res, next) => {
               .save()
               .then(result => {
                 console.log(result);
-                res.status(201).json({
+                res.status(201).send({
                   message: "User created"
                 });
               })
@@ -60,12 +60,13 @@ exports.user_login = (req, res, next) => {
           });
         }
         if (result) {
+          console.log('result ok');
           const token = jwt.sign(
             {
               email: user[0].email,
               userId: user[0]._id
             },
-            process.env.JWT_KEY,
+            'secret',
             {
               expiresIn: "1h"
             }
