@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const PostsController = require('../controllers/posts');
+const checkAuth = require('../middleware/check-auth');
 
-router.get('/', PostsController.get_posts);
+router.get('/', checkAuth, PostsController.get_posts);
 
 router.post('/', PostsController.create_post);
 

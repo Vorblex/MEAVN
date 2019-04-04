@@ -1,11 +1,12 @@
 const Post = require('../models/post');
 
 exports.get_posts = (req, res) => {
+    console.log(req.userData);
     Post.find({}, 'title description action', (err, posts) => {
         if (err) {
             res.sendStatus(500)
         } else {
-            res.status('200').send({posts})
+            res.status('200').send({posts, user: req.userData})
         }
         }).sort({ _id: -1 })
 };
