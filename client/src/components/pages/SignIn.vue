@@ -38,10 +38,12 @@ export default {
             email: this.user.email,
             password: this.user.password
           })
+          console.log(res);
+            localStorage.setItem('accessToken', res.data.token)
             this.answer = res.data.message
-        } catch({response}) {
-          console.log(response.data.message);
-          this.answer = response.data.message
+        } catch(err) {
+          console.log(err.message);
+          this.answer = err.message;
         }
           // this.$router.push({ name: 'Posts' })
       } else {

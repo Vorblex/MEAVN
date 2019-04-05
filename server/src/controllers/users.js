@@ -60,18 +60,19 @@ exports.user_login = (req, res, next) => {
           });
         }
         if (result) {
-          console.log('result ok');
+          console.log('User found');
           const token = jwt.sign(
             {
               email: user[0].email,
-              userId: user[0]._id
+              userId: user[0]._id,
+              role: user[0].role
             },
             'secret',
             {
-              expiresIn: "1h"
+              expiresIn: "12h"
             }
           );
-          return res.status(200).json({
+          return res.status(200).send({
             message: "Auth successful",
             token: token
           });

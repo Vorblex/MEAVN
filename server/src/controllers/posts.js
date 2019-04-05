@@ -6,7 +6,13 @@ exports.get_posts = (req, res) => {
         if (err) {
             res.sendStatus(500)
         } else {
-            res.status('200').send({posts, user: req.userData})
+          const user = req.userData
+          user.credentials = 'regular'
+          if(user.role === 'admin') {
+            user.credentials = 'top'
+          }
+
+            res.status('200').send({posts, user})
         }
         }).sort({ _id: -1 })
 };
