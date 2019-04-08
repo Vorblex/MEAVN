@@ -40,12 +40,14 @@ export default {
           })
           console.log(res);
             localStorage.setItem('accessToken', res.data.token)
+            localStorage.setItem('userId', res.data.userId)
+            localStorage.setItem('role', res.data.role)
             this.answer = res.data.message
         } catch(err) {
           console.log(err.message);
           this.answer = err.message;
         }
-          // this.$router.push({ name: 'Posts' })
+          this.$router.push({ name: 'Posts' })
       } else {
         alert('Empty fields!')
       }

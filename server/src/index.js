@@ -13,6 +13,7 @@ app.use(cors());
 
 app.use('/posts', require('./routes/posts'));
 app.use('/users', require('./routes/users'));
+app.use('/projects', require('./routes/projects'))
 
 mongoose.connect(config.dbURL, config.dbOptions);
 

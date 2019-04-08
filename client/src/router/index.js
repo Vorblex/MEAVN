@@ -6,6 +6,8 @@ import NewPost from '@/components/pages/NewPostPage'
 import EditPage from '@/components/pages/EditPage'
 import SignUp from '@/components/pages/SignUp'
 import SignIn from '@/components/pages/SignIn'
+import Projects from '@/components/pages/ProjectsPage'
+import { checkAccess } from './middlewares'
 
 import store from '@/store'
 
@@ -13,13 +15,18 @@ import store from '@/store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'HelloWorld',
+    //   component: HelloWorld
+    // },
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Enter',
+      component: SignIn
     },
     {
       path: '/registration',
@@ -41,6 +48,11 @@ export default new Router({
       }
     },
     {
+      path: '/projects',
+      name: 'Projects',
+      component: Projects
+    },
+    {
       path: '/posts/new',
       name: 'NewPost',
       component: NewPost
@@ -53,3 +65,6 @@ export default new Router({
 
   ]
 })
+
+router.beforeEach(checkAccess)
+export default router
