@@ -5,6 +5,8 @@ const checkAuth = require('../middleware/check-auth');
 
 router.get('/', ProjectsController.get_projects);
 
+router.get('/users/:name', ProjectsController.get_project_users);
+
 router.post('/', ProjectsController.create_project);
 
 router.get('/:id', ProjectsController.get_one_project);

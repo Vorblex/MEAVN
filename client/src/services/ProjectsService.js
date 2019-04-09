@@ -15,5 +15,8 @@ export default {
   },
   removeProject (id) {
     return api().delete(`projects/${id}`)
+  },
+  getUsers (param) {
+    return api().get(`projects/users/${param}`)
   }
 }

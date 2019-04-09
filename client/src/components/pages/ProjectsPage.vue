@@ -6,14 +6,18 @@
         h3 The list of projects
 
         section.panel.panel-success
-          .panel-heading All projects
-
+          .panel-heading Project users
+          div(v-for="user in users", :key="user._id")
+            span {{user.email}} - 
+            span {{user.role}}
+          // .panel-heading All projects
+          router-link(:to="{name: 'NewProject'}") add new project
           table.table.table-striped
             tr
               th Project name
               th Link to project
             tr( v-for="(project, index) in projects", :key="project._id")
-              td {{project.name}}
+              td(@click="showUsers(project.name)") {{project.name}}
               td {{project.link}}
 </template>
 
@@ -23,7 +27,8 @@ import ProjectsService from '@/services/ProjectsService'
 export default {
   data () {
     return {
-      projects: []
+      projects: [],
+      users: []
     }
   },
   methods: {
@@ -31,6 +36,11 @@ export default {
       const response = await ProjectsService.fetchProjects()
       this.projects = response.data.projects
       console.log(this.projects);
+    },
+    async showUsers (name) {
+      const {data} = await ProjectsService.getUsers(name)
+      this.users = data.users
+      console.log(this.users);
     }
   },
   mounted() {

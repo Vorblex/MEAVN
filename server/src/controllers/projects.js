@@ -1,4 +1,5 @@
 const Project = require('../models/project');
+const User = require('../models/user');
 
 exports.get_projects = (req, res) => {
     console.log(req.userData);
@@ -27,9 +28,20 @@ exports.get_one_project = (req, res) => {
       })
 };
 
+exports.get_project_users = (req, res) => {
+  console.log(req.params);
+  User.find({accessTo: req.params.name}, 'email role', (err, users) => {
+    if (err) {
+      res.sendStatus(500)
+    } else {
+      res.status(200).send({users})
+    }
+  }).sort({_id: -1});
+};
+
 exports.create_project = (req, res) => {
     const project = new Project({
-        title: req.body.name,
+        name: req.body.name,
         link: req.body.link
       })
       project.save((err, data) => {

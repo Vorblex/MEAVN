@@ -7,6 +7,8 @@ import EditPage from '@/components/pages/EditPage'
 import SignUp from '@/components/pages/SignUp'
 import SignIn from '@/components/pages/SignIn'
 import Projects from '@/components/pages/ProjectsPage'
+import NewProject from '@/components/pages/NewProjectPage'
+
 import { checkAccess } from './middlewares'
 
 import store from '@/store'
@@ -51,6 +53,11 @@ const router = new Router({
       path: '/projects',
       name: 'Projects',
       component: Projects
+    },
+    {
+      path: '/newproject',
+      name: 'NewProject',
+      component: NewProject
     },
     {
       path: '/posts/new',
