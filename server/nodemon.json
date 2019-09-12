@@ -1,5 +1,6 @@
 {
     "env": {
+        "MONGO_ATLAS_CREDENTIALS": "Alex:majestyc7",
         "MONGO_ATLAS_PW": "CTdYB4jqX6uovW7O",
         "JWT_KEY": "secret"
     }

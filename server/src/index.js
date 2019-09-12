@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
-const config = require('../config/config.js');
+const config = require('../config');
 mongoose.Promise = global.Promise;
 
 const app = express();

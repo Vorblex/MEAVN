@@ -3,16 +3,18 @@ const Post = require('../models/post');
 exports.get_posts = (req, res) => {
     console.log(req.userData);
     Post.find({}, 'title description action', (err, posts) => {
+      console.log(posts);
         if (err) {
             res.sendStatus(500)
-        } else {
-          const user = req.userData
-          user.credentials = 'regular'
-          if(user.role === 'admin') {
-            user.credentials = 'top'
-          }
+        }
+         else {
+          // const user = req.userData
+          // user.credentials = 'regular'
+          // if(user.role === 'admin') {
+          //   user.credentials = 'top'
+          // }
 
-            res.status('200').send({posts, user})
+            res.status('200').send({posts})
         }
         }).sort({ _id: -1 })
 };
